@@ -3,6 +3,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { port } from "./config/server.js";
+import tweetRoutes from "./routes/tweet.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +26,8 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.use("/tweets", tweetRoutes); //http://localhost:3000/tweets
+
 app.get("/", (req, res) => {
   res.render("index", { name: "Pratyush Biswal" });
 });
