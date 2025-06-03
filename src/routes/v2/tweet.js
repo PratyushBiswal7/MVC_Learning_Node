@@ -1,6 +1,9 @@
 import express from "express";
 import commentRoutes from "./comment.js";
-import { getAllTweets, getTweetById } from "../../controller/tweetController.js";
+import {
+  getAllTweets,
+  getTweetById,
+} from "../../controllers/tweetController.js";
 
 const router = express.Router();
 
