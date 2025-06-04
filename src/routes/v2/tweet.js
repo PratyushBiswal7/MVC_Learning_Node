@@ -3,6 +3,7 @@ import commentRoutes from "./comment.js";
 import {
   getAllTweets,
   getTweetById,
+  postTweet,
 } from "../../controllers/tweetController.js";
 
 const router = express.Router();
@@ -12,6 +13,8 @@ router.get("/", getAllTweets);
 
 // GET /tweet/:tweetId
 router.get("/:tweetId", getTweetById);
+
+router.post("/", postTweet);
 
 router.use("/:tweetId/comments", commentRoutes); // Mount comment routes under /tweet/:tweetId/comments
 
