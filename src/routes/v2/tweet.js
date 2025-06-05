@@ -5,7 +5,7 @@ import {
   getTweetById,
   postTweet,
 } from "../../controllers/tweetController.js";
-import { validatePostTweet } from "../../validators/postTweetValidator.js";
+// import { validatePostTweet } from "../../validators/postTweetValidator.js";
 import validator from "../../validators/zodValidator.js";
 import { tweetZodSchema } from "../../validators/tweetZodSchema.js";
 

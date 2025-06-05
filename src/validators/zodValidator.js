@@ -6,9 +6,9 @@ export default function validator(schema) {
       next();
     } catch (error) {
       return res.status(400).json({
-        error: error.error,
         success: false,
         message: "Validation failed",
+        error: error.errors || error.message, // Better error detail from Zod
       });
     }
   };
