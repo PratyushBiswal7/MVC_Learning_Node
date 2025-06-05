@@ -5,9 +5,7 @@ import {
   getTweetById,
   postTweet,
 } from "../../controllers/tweetController.js";
-import { validatePostTweet } from "../../validators/postTweetValidator.js";
-import validator from "../../validators/zodValidator.js";
-import { tweetZodSchema } from "../../validators/tweetZodSchema.js";
+import { validatePostTweet } from "../../middlewares/validation.js";
 
 const router = express.Router();
 
@@ -17,9 +15,7 @@ router.get("/", getAllTweets);
 // GET /tweet/:tweetId
 router.get("/:tweetId", getTweetById);
 
-// router.post("/", validatePostTweet, postTweet);
-
-router.post("/", validator(tweetZodSchema), postTweet);
+router.post("/", validatePostTweet, postTweet);
 
 router.use("/:tweetId/comments", commentRoutes); // Mount comment routes under /tweet/:tweetId/comments
 
