@@ -17,9 +17,9 @@ router.get("/", getAllTweets);
 // GET /tweet/:tweetId
 router.get("/:tweetId", getTweetById);
 
-// router.post("/", validatePostTweet, postTweet);
+// router.post("/", validatePostTweet, postTweet); //manually validate the request body
 
-router.post("/", validator(tweetZodSchema), postTweet);
+router.post("/", validator(tweetZodSchema), postTweet); // Automatically validate the request body using Zod schema
 
 router.use("/:tweetId/comments", commentRoutes); // Mount comment routes under /tweet/:tweetId/comments
 
