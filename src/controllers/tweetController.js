@@ -1,3 +1,6 @@
+import { success } from "zod/v4";
+import { createTweet as createTweetService } from "../services/tweetServices.js";
+
 export const getAllTweets = (req, res) => {
   // Here you would typically fetch tweets from a database
   res.json({
@@ -13,14 +16,21 @@ export const getTweetById = (req, res) => {
   });
 };
 
-export const postTweet = (req, res) => {
+export const postTweet = async (req, res) => {
   const { content } = req.body || {};
-  // Here you would typically save the tweet to a database
-  res.status(201).json({
-    message: "Tweet created successfully",
-    tweet: {
-      id: Date.now(), // Simulating an ID for the new tweet
-      content,
-    },
-  });
+  try {
+    const response = await createTweetService({
+      body: content, // body: req.body.body
+    });
+    return res.status(201).json({
+      message: "Tweet created successfully",
+      tweet: response,
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error creating tweet:", error);
+    return res
+      .status(500)
+      .json({ error: "Internal Server Error", success: false });
+  }
 };
