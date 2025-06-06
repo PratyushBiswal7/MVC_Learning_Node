@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { port } from "./config/server.js";
 import apiRoutes from "./routes/apiRoutes.js";
+import connectDB from "./config/dbConfig.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,4 +45,5 @@ app.use((req, res) => {
 // Start Server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+  connectDB();
 });
